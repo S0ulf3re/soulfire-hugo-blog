@@ -1,0 +1,17 @@
+baseURL = 'https://blog.jarexibackblaze.xyz'
+languageCode = 'en-us'
+title = "Soulfire's Wacky Web"
+[params]
+    subtitle = 'A wacky blog by a wacky wolf'
+    [params.contact]
+        email = 'soulfire@jarexibackblaze.xyz'
+[[module.imports]]
+path = "github.com/CaiJimmy/hugo-theme-stack/v3"
+
+[caches]
+  [caches.images]
+    dir = ':cacheDir/images'
+
+
+[permalinks]
+  post = "/:year/:month/:day/:title/"
