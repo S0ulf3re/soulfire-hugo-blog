@@ -6,6 +6,54 @@ title = "Soulfire's Wacky Web"
     [params.contact]
         email = 'soulfire@jarexibackblaze.xyz'
 
+[menu]
+  main = [ ]
+
+
+  # Github Social Link
+  [[menu.social]]
+  identifier = "github"
+  name = "GitHub"
+  url = "https://github.com/s0ulf3re"
+  
+  [menu.social.params]
+  icon = "brand-github"
+
+  # Mastodon Social Link
+  [[menu.social]]
+  identifier = "mastodon"
+  name = "Mastodon"
+  url = "https://wetdry.world/@Soulfirethewolf"
+
+  [menu.social.params]
+  icon = "brand-mastodon"
+
+  # Bluesky Social Link
+  [[menu.social]]
+  identifier = "bluesky"
+  name = "Bluesky"
+  url = "https://bsky.app/profile/soulfire.jarexibackblaze.xyz"
+  
+  [menu.social.params]
+  icon = "brand-bluesky"
+
+  # Website Social Link
+  [[menu.social]]
+  identifier = "main-website"
+  name = "Main Website"
+  url = "https://soulfire.jarexibackblaze.xyz"
+  
+  [menu.social.params]
+  icon = "world"
+
+  # FA Social Link
+  [[menu.social]]
+  identifier = "fur-affinity"
+  name = "Fur Affinity"
+  url = "https://furaffinity.net/user/dunked0n"
+  
+  [menu.social.params]
+  icon = "paw"
 
 [[params.widgets.page]]
   type = "toc"
