@@ -3,8 +3,12 @@ languageCode = 'en-us'
 title = "Soulfire's Wacky Web"
 [params]
     subtitle = 'A wacky blog by a wacky wolf'
+    rssFullContent = true
+
     [params.contact]
         email = 'soulfire@jarexibackblaze.xyz'
+    [params.sidebar]
+      subtitle = "A wacky blog by a wacky wolf"
 
 [menu]
   main = [ ]
@@ -55,6 +59,7 @@ title = "Soulfire's Wacky Web"
   [menu.social.params]
   icon = "paw"
 
+
 [[params.widgets.page]]
   type = "toc"
   [params.widgets.page.params]
@@ -65,13 +70,22 @@ title = "Soulfire's Wacky Web"
   [params.widgets.page.params]
     limit = 10
 
-
-
 [[params.widgets.homepage]]
   type = "tag-cloud"
   [params.widgets.homepage.params]
     limit = 10
 
+[[params.widgets.page]]
+  type = "search"
+
+[[params.widgets.homepage]]
+  type = "search"
+
+[params.opengraph.twitter]
+card = "summary_large_image"
+
+[markup.goldmark.renderer]
+unsafe = true
 
 [[module.imports]]
 path = "github.com/CaiJimmy/hugo-theme-stack/v3"
