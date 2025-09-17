@@ -5,6 +5,26 @@ title = "Soulfire's Wacky Web"
     subtitle = 'A wacky blog by a wacky wolf'
     [params.contact]
         email = 'soulfire@jarexibackblaze.xyz'
+
+
+[[params.widgets.page]]
+  type = "toc"
+  [params.widgets.page.params]
+    limit = 10
+
+[[params.widgets.page]]
+  type = "tag-cloud"
+  [params.widgets.page.params]
+    limit = 10
+
+
+
+[[params.widgets.homepage]]
+  type = "tag-cloud"
+  [params.widgets.homepage.params]
+    limit = 10
+
+
 [[module.imports]]
 path = "github.com/CaiJimmy/hugo-theme-stack/v3"
 
