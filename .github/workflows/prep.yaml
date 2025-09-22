@@ -46,7 +46,7 @@ jobs:
         with:
           python-version: 3.13
           cache: pip
-      - run: pip install -r **/requirements.txt
+      - run: pip install -r requirements.txt
       
       - name: Apply changes to each markdown file
         if: steps.changed-markdown-files.outputs.any_changed == 'true'
