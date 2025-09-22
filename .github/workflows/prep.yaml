@@ -65,12 +65,13 @@ jobs:
         env:
           ALL_CHANGED_FILES: ${{ steps.changed-markdown-files.outputs.all_changed_files }}
         run: |
-          IFS=$'\n'
+          # IFS=$'\n'
 
-          for file in ${ALL_CHANGED_FILES}; do
-            git add "$file"
-          done
-          unset IFS
+          # for file in ${ALL_CHANGED_FILES}; do
+          #   git add "$file"
+          # done
+          # unset IFS
+          git add .
       - name: Commit new files to repository
         run: |
           git commit -m "Revising commited Markdown files for Hugo"
