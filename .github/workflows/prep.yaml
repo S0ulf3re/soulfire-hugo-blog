@@ -53,11 +53,13 @@ jobs:
         env:
           ALL_CHANGED_FILES: ${{ steps.changed-markdown-files.outputs.all_changed_files }}
         run: |
-          echo ${ALL_CHANGED_FILES}
+          echo "${ALL_CHANGED_FILES}"
+          IFS=$'\n'
           for file in ${ALL_CHANGED_FILES}; do
-            echo $file
-            python3 scripts/prep-folder-for-publishing.py --file-path $file
+            echo "$file"
+            python3 scripts/prep-folder-for-publishing.py --file-path "$file"
           done
+          unset IFS
 
 
       - name: Add changed files to new commit
