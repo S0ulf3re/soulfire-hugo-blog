@@ -85,6 +85,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     needs: update-files
+    if: ${{ always() }}
     env:
       DART_SASS_VERSION: 1.92.1
       GO_VERSION: 1.25.1
