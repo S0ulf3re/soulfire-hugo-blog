@@ -8,7 +8,7 @@ on:
   push:
     branches: [ "main" ]
     paths:
-      - 'content/post/**'
+      - 'content/post/*/'
   pull_request:
     branches: [ "main" ]
 
@@ -18,7 +18,7 @@ on:
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   # This workflow contains a single job called "build"
-  build:
+  update-files:
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
 
@@ -26,6 +26,8 @@ jobs:
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
       # Gets the latest changes from the newest commit
       - name: Get all changed markdown files
@@ -33,7 +35,7 @@ jobs:
         uses: tj-actions/changed-files@24d32ffd492484c1d75e0c0b894501ddb9d30d62 # v47
         with:
           # Avoid using single or double quotes for multiline patterns
-          files: 'content/posts/**/**.md'
+          files: 'content/posts/*/**.md'
       
       - name: List all changed files markdown files
         env:
