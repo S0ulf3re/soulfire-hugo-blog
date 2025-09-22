@@ -33,8 +33,7 @@ jobs:
         uses: tj-actions/changed-files@24d32ffd492484c1d75e0c0b894501ddb9d30d62 # v47
         with:
           # Avoid using single or double quotes for multiline patterns
-          files: |
-            content/posts/**/**.md
+          files: 'content/posts/**/**.md'
       
       - name: List all changed files markdown files
         if: steps.changed-markdown-files.outputs.any_changed == 'true'
