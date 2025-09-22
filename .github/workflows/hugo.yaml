@@ -48,7 +48,7 @@ jobs:
 
       - name: setup python
         uses: actions/setup-python@v6
-        if: steps.changed-markdown-files.outputs.any_changed == 'true'
+        if: ${{ steps.changed-markdown-files.outputs.any_changed == 'true' }}
         with:
           python-version: 3.13
           cache: pip
