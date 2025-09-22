@@ -29,8 +29,8 @@ jobs:
 
       - name: configure git
         run: |
-          git config user.name github-actions
-          git config user.email github-actions@github.com
+          git config user.name github-actions[bot]
+          git config user.email github-actions[bot]@github.com
           git checkout main
           git fetch origin
 
@@ -77,4 +77,6 @@ jobs:
           git commit -m "Revising commited Markdown files for Hugo"
 
       - name: Push changes
-        run: git push origin main
+        uses: actions/checkout@v4
+      - run: git push
+        
