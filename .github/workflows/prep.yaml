@@ -18,6 +18,8 @@ jobs:
   update-files:
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
+    permissions:
+        contents: write
 
 
     # Steps represent a sequence of tasks that will be executed as part of the job
@@ -30,7 +32,7 @@ jobs:
       - name: configure git
         run: |
           git config user.name github-actions[bot]
-          git config user.email github-actions[bot]@github.com
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
           git checkout main
           git fetch origin
 
@@ -76,9 +78,7 @@ jobs:
         run: |
           git commit -m "Revising commited Markdown files for Hugo"
 
-      - name: Push changes to repository
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: |
-          git remote set-url origin https://x-access-token:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git
-          git push origin main
+      - name: Push changes
+        uses: actions/checkout@v4
+      - run: git push
+        
