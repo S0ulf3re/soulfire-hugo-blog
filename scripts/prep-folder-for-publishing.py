@@ -16,7 +16,7 @@ md_files = file_path
 
 if not md_files:
     print("No Markdown files found")
-    exit(1)
+    exit(0)
 
 # Get the title of the markdown file
 md_file = md_files
@@ -28,7 +28,7 @@ with open(md_file, "r", encoding="utf-8") as input_file:
         md_file_title = re.search("<h1>(.*?)</h1>", html).group(1)
     except AttributeError:
         print("No title found")
-        exit(1)
+        exit(0)
     
     input_file.close()
 
