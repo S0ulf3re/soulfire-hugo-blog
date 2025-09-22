@@ -53,6 +53,7 @@ jobs:
         env:
           ALL_CHANGED_FILES: ${{ steps.changed-markdown-files.outputs.all_changed_files }}
         run: |
+          echo ${ALL_CHANGED_FILES}
           for file in ${ALL_CHANGED_FILES}; do
             echo $file
             python3 scripts/prep-folder-for-publishing.py --file-path $file
