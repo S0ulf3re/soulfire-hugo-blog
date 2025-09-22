@@ -79,6 +79,5 @@ jobs:
           git commit -m "Revising commited Markdown files for Hugo"
 
       - name: Push changes
-        uses: actions/checkout@v4
-      - run: git push
+        run: git push
         
