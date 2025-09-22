@@ -54,8 +54,7 @@ jobs:
           ALL_CHANGED_FILES: ${{ steps.changed-markdown-files.outputs.all_changed_files }}
         run: |
           for file in ${ALL_CHANGED_FILES}; do
-            sanitized_file_path=$(echo "$line" | sed 's/ /\\ /g' )
-            python3 scripts/prep-folder-for-publishing.py --file-path "$sanitized_file_path"
+            python3 scripts/prep-folder-for-publishing.py --file-path "$file"
           done
 
 
