@@ -15,8 +15,76 @@ defaults:
   run:
     shell: bash
 jobs:
+
+  update-files:
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+    permissions:
+        contents: write
+
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: configure git
+        run: |
+          git config user.name github-actions[bot]
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+          git checkout main
+          git fetch origin
+
+      # Gets the latest changes from the newest commit
+      - name: Get all changed markdown files
+        id: changed-markdown-files
+        uses: tj-actions/changed-files@24d32ffd492484c1d75e0c0b894501ddb9d30d62 # v47
+        with: 
+          files: "content/post/*/*.md"
+
+      - name: setup python
+        uses: actions/setup-python@v6
+        with:
+          python-version: 3.13
+          cache: pip
+      - run: pip install -r requirements.txt
+      
+      - name: Apply changes to each markdown file
+        if: steps.changed-markdown-files.outputs.any_changed == 'true'
+        env:
+          ALL_CHANGED_FILES: ${{ steps.changed-markdown-files.outputs.all_changed_files }}
+        run: |
+          IFS=$'\n'
+          for file in ${ALL_CHANGED_FILES}; do
+            echo "$file"
+            python3 scripts/prep-folder-for-publishing.py --file-path "$file"
+          done
+          unset IFS
+
+
+      - name: Add changed files to new commit
+        env:
+          ALL_CHANGED_FILES: ${{ steps.changed-markdown-files.outputs.all_changed_files }}
+        run: |
+          # IFS=$'\n'
+
+          # for file in ${ALL_CHANGED_FILES}; do
+          #   git add "$file"
+          # done
+          # unset IFS
+          git add .
+      - name: Commit new files to repository
+        run: |
+          git commit -m "Revising commited Markdown files for Hugo"
+
+      - name: Push changes
+        run: git push
+        
   build:
     runs-on: ubuntu-latest
+    needs: update-files
     env:
       DART_SASS_VERSION: 1.92.1
       GO_VERSION: 1.25.1
