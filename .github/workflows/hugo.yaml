@@ -29,19 +29,22 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: configure git
-        run: |
-          git config user.name github-actions[bot]
-          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
-          git checkout main
-          git fetch origin
-
       # Gets the latest changes from the newest commit
       - name: Get all changed markdown files
         id: changed-markdown-files
         uses: tj-actions/changed-files@24d32ffd492484c1d75e0c0b894501ddb9d30d62 # v47
         with: 
           files: "content/post/*/*.md"
+
+      - name: configure git
+        if: steps.changed-markdown-files.outputs.any_changed == 'true'
+
+        run: |
+          git config user.name github-actions[bot]
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+          git checkout main
+          git fetch origin
+
 
       - name: setup python
         uses: actions/setup-python@v6
