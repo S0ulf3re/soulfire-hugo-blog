@@ -12,14 +12,14 @@ args = parser.parse_args()
 file_path = os.path.normpath(args.file_path)
 
 # Get markdown file
-md_files = glob.glob(file_path + '/*.md')
+md_files = file_path
 
 if not md_files:
     print("No Markdown files found")
     exit(1)
 
 # Get the title of the markdown file
-md_file = md_files.pop(0)
+md_file = md_files
 md_file_title = ""
 with open(md_file, "r", encoding="utf-8") as input_file:
     text = input_file.read()
