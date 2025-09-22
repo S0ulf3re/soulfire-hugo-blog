@@ -22,7 +22,6 @@ jobs:
     permissions:
         contents: write
 
-
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
@@ -46,6 +45,7 @@ jobs:
 
       - name: setup python
         uses: actions/setup-python@v6
+        if: steps.changed-markdown-files.outputs.any_changed == 'true'
         with:
           python-version: 3.13
           cache: pip
@@ -65,6 +65,7 @@ jobs:
 
 
       - name: Add changed files to new commit
+        if: steps.changed-markdown-files.outputs.any_changed == 'true'
         env:
           ALL_CHANGED_FILES: ${{ steps.changed-markdown-files.outputs.all_changed_files }}
         run: |
@@ -76,10 +77,13 @@ jobs:
           # unset IFS
           git add .
       - name: Commit new files to repository
+        if: steps.changed-markdown-files.outputs.any_changed == 'true'
+
         run: |
           git commit -m "Revising commited Markdown files for Hugo"
 
       - name: Push changes
+        if: steps.changed-markdown-files.outputs.any_changed == 'true'
         run: git push
         
   build:
