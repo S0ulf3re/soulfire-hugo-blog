@@ -34,8 +34,7 @@ jobs:
       - name: Get all changed markdown files
         id: changed-markdown-files
         uses: tj-actions/changed-files@24d32ffd492484c1d75e0c0b894501ddb9d30d62 # v47
-        with:
-          # Avoid using single or double quotes for multiline patterns
+
       
       - name: List all changed files markdown files
         env:
