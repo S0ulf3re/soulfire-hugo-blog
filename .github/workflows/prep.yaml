@@ -27,9 +27,14 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v4
 
-      # Runs a single command using the runners shell
-      - name: Run a one-line script
-        run: echo Hello, world!
+      # Gets the latest changes from the newest commit
+      - name: Get all changed markdown files
+        id: changed-markdown-files
+        uses: tj-actions/changed-files@24d32ffd492484c1d75e0c0b894501ddb9d30d62 # v47
+        with:
+          # Avoid using single or double quotes for multiline patterns
+          files: |
+            content/posts/**/**.md
 
       # Runs a set of commands using the runners shell
       - name: Run a multi-line script
